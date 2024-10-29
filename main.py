@@ -5,5 +5,9 @@ def main():
     print(file_contents)
 
 
-if __name__ == '__main__':
-    main()
+def counter(text):
+    print(len(text))
+
+
+main()
+counter()
