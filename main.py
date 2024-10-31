@@ -1,20 +1,33 @@
-path_to_book = "books/frankenstein.txt"
-
 def main():
-    path = path_to_book()
-    with open(path) as book:
-        print(book.read(), word_counter())
-        
+    book_path = input("Enter your book path: ")
+    text = file_path(book_path)
+    words = word_counter(text)
+    characters = dict(sorted(char_dict(text).items(), key=lambda item: item[1], reverse=True)) 
+    #sorted(char_dict.items(), key=lambda item: item[1], reverse=True) 
+    #создаёт отсортированный список пар (ключ, значение), сортируя по значению (item[1]) в порядке убывания (reverse=True).
+    #print(text)
+    #print(characters)
+    print(f"--- Begin report of {book_path} ---")
+    print(f"{words} words found in the document")
+    for keys, value in characters.items():
+        print(f"The '{keys}' character was found {value} times")
+    print("--- End report ---")
     
-def path_to_book(a="books/frankenstein.txt"):
-    your_path = input("Enter path to book: ")
-    return your_path
+    
+def file_path(path):
+    with open(path) as book:
+        return book.read()
+        
+def word_counter(book):
+    return len(book.split())        
 
-
-def word_counter(path="books/frankenstein.txt"):
-    words = main()
-    return len(words.split())
-
+def char_dict(source):
+    import string
+    char_dict = dict.fromkeys(string.ascii_lowercase, 0)
+    for i in source.lower():
+        if i in char_dict:
+            char_dict[i] += 1
+    return char_dict
 
 
 main()
