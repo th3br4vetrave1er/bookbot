@@ -2,8 +2,8 @@ def main():
     book_path = input("Enter your book path: ")
     text = file_path(book_path)
     words = word_counter(text)
-    characters = dict(sorted(char_dict(text).items(), key=lambda item: item[1], reverse=True)) 
-    #sorted(char_dict.items(), key=lambda item: item[1], reverse=True) 
+    characters = dict(sorted(char_dict(text).items(), key=lambda item: item[1], reverse=True))
+    #sorted(char_dict.items(), key=lambda item: item[1], reverse=True)
     #создаёт отсортированный список пар (ключ, значение), сортируя по значению (item[1]) в порядке убывания (reverse=True).
     #print(text)
     #print(characters)
@@ -12,14 +12,14 @@ def main():
     for keys, value in characters.items():
         print(f"The '{keys}' character was found {value} times")
     print("--- End report ---")
-    
-    
+
+
 def file_path(path):
     with open(path) as book:
         return book.read()
-        
+
 def word_counter(book):
-    return len(book.split())        
+    return len(book.split())
 
 def char_dict(source):
     import string
